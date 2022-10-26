@@ -50,7 +50,7 @@ public class Cannon : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                GameObject p = Instantiate(animals[Random.Range(0, 3)], barrel.transform.position + barrel.transform.forward * 4, Quaternion.identity);
+                GameObject p = Instantiate(animals[Random.Range(0, animals.Count-1)], barrel.transform.position + barrel.transform.forward * 4, Quaternion.identity);
                 p.GetComponent<Rigidbody>().AddRelativeForce(barrel.transform.forward * 100, ForceMode.Impulse);
 
                 ParticleSystem s = Instantiate(muzzleflash, barrel.transform.position + barrel.transform.forward * 4, Quaternion.Euler(-90, 0, 0));
@@ -60,13 +60,19 @@ public class Cannon : MonoBehaviour
         else {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                GameObject p = Instantiate(animals[Random.Range(0, 3)], barrel.transform.position + barrel.transform.forward * 4, Quaternion.identity);
+                GameObject p = Instantiate(animals[Random.Range(0, animals.Count-1)], barrel.transform.position + barrel.transform.forward * 4, Quaternion.identity);
                 p.GetComponent<Rigidbody>().AddRelativeForce(barrel.transform.forward * 100, ForceMode.Impulse);
 
                 ParticleSystem s = Instantiate(muzzleflash, barrel.transform.position + barrel.transform.forward * 4, Quaternion.Euler(-90, 0, 0));
                 s.Play();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.B)) {
+            GameObject b = Instantiate(animals[animals.Count-1], barrel.transform.position + barrel.transform.forward * 4, Quaternion.identity);
+            b.GetComponent<Rigidbody>().AddRelativeForce(barrel.transform.forward * 100, ForceMode.Impulse);
+        }
+
         if (barrel.transform.rotation.eulerAngles.x < 30)
             barrel.transform.rotation = Quaternion.Euler(360, barrel.transform.rotation.eulerAngles.y, barrel.transform.rotation.eulerAngles.z);
     }

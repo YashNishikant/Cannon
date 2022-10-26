@@ -19,7 +19,6 @@ public class PopulateLand : MonoBehaviour
             if(transform.rotation.y < 1) { 
                 Instantiate(items[Random.Range(0, items.Count)], transform.position + transform.forward * rad, Quaternion.identity);
                 transform.Rotate(0, 3, 0);
-                Debug.Log(transform.rotation.y);
             }
         }
     }
